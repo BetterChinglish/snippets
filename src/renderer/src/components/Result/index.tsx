@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react';
 import classNames from 'classnames'
 import { CodeContext, ContextProps } from '../../context/CodeContext'
 import './styles.scss'
@@ -19,7 +19,7 @@ export default function Result(): React.JSX.Element {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
 
   // 监听键盘事件，处理用户上下选择
-  const handleKeyUpAndDown = (e) => {
+  const handleKeyUpAndDown = useCallback((e) => {
     console.log('keydown', e)
     const pressedKey = e.key;
     if(dataList.length === 0) {
@@ -50,7 +50,7 @@ export default function Result(): React.JSX.Element {
       default:
         break;
     }
-  }
+  }, [dataList, selectedIndex])
 
   // 绑定键盘事件
   useEffect(()=>{
@@ -59,7 +59,7 @@ export default function Result(): React.JSX.Element {
     return () => {
       document.removeEventListener('keydown', handleKeyUpAndDown)
     }
-  }, [dataList, selectedIndex])
+  }, [handleKeyUpAndDown])
 
   return (
     <>
