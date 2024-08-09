@@ -1,3 +1,11 @@
 .choosed {
-  @apply bg-amber-200
+  @apply bg-amber-200;
+}
+
+.selected-content {
+  @apply whitespace-normal break-words overflow-hidden ml-[23px] mb-3 pr-6 text-sm block;
+}
+
+.no-selected-hidden {
+  @apply hidden;
 }
