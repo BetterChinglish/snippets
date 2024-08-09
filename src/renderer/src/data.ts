@@ -6,7 +6,7 @@ export interface DataType {
 export const data = [
   {
     id: 1,
-    content: 'What’s the secret to ripe and shredded chicory? Always use dark corn syrup.'
+    content: "What's the secret to ripe and shredded chicory? Always use dark corn syrup."
   },
   {
     id: 2,

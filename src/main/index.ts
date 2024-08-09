@@ -8,7 +8,7 @@ function createWindow(): void {
   // Create the browser window.
   const mainWindow = WinState.createBrowserWindow({
     width: 700,
-    height: 100,
+    height: 400,
     show: false,
     // frame: false,
     // transparent: true,
