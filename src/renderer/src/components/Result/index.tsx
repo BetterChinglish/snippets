@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react'
+import classNames from 'classnames'
 import { CodeContext, ContextProps } from '../../context/CodeContext'
+import './styles.scss'
 
 export default function Result(): React.JSX.Element {
   const { dataList } = useContext(CodeContext) as ContextProps
@@ -40,6 +42,11 @@ export default function Result(): React.JSX.Element {
           setSelectedIndex(selectedIndex + 1)
         }
         break;
+      case 'Enter':
+        // 回车键，复制选中的内容
+        const selectedContent = dataList[selectedIndex].content;
+        navigator.clipboard.writeText(selectedContent);
+        break;
       default:
         break;
     }
@@ -57,9 +64,8 @@ export default function Result(): React.JSX.Element {
   return (
     <>
       <main className="bg-slate-50 pl-6 pr-6 overflow-ellipsis whitespace-nowrap">
-        {selectedIndex}
         {dataList.map((item, index) => (
-          <div key={item.id} className={{"overflow-ellipsis overflow-hidden mb-3": true, 'choosed': index === selectedIndex}}>
+          <div key={item.id} className={classNames("overflow-ellipsis overflow-hidden mb-3", {'choosed': index === selectedIndex})}>
             {index + 1} : {item.content}
           </div>
         ))}
