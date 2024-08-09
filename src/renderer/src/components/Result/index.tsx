@@ -11,9 +11,8 @@ export default function Result(): React.JSX.Element {
       <main className="bg-slate-50 pl-6 pr-6 overflow-ellipsis whitespace-nowrap">
         {dataList.map((item, index) => {
           const isSelected = selectedIndex === index;
-          return (<div>
+          return (<div key={item.id}>
             <div
-              key={item.id}
               className={classNames("overflow-ellipsis overflow-hidden mb-3", { 'choosed': isSelected})}
             >
               {index + 1} : {item.content}
