@@ -41,14 +41,18 @@ const useCodeSelect = () => {
         }
         break;
       case 'Enter':
-        // 回车键，复制选中的内容
-        const selectedContent = dataList[selectedIndex].content;
-        navigator.clipboard.writeText(selectedContent);
+        copyContent(selectedIndex);
         break;
       default:
         break;
     }
   }, [dataList, selectedIndex])
+
+  const copyContent = (index: number) => {
+    // 回车键，复制选中的内容
+    const selectedContent = dataList[index].content;
+    navigator.clipboard.writeText(selectedContent);
+  }
 
   // 绑定键盘事件
   useEffect(()=>{
@@ -61,7 +65,8 @@ const useCodeSelect = () => {
 
   return {
     dataList,
-    selectedIndex
+    selectedIndex,
+    copyContent
   }
 }
 

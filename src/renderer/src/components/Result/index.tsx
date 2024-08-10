@@ -4,7 +4,7 @@ import './styles.scss'
 import useCodeSelect from '../../hooks/useCodeSelect';
 
 export default function Result(): React.JSX.Element {
-  const { dataList, selectedIndex } = useCodeSelect();
+  const { dataList, selectedIndex, copyContent } = useCodeSelect();
 
   return (
     <>
@@ -13,7 +13,8 @@ export default function Result(): React.JSX.Element {
           const isSelected = selectedIndex === index;
           return (<div key={item.id}>
             <div
-              className={classNames("overflow-ellipsis overflow-hidden mb-3", { 'choosed': isSelected})}
+              onClick={() => {copyContent(index)}}
+              className={classNames("overflow-ellipsis overflow-hidden mb-3 cursor-pointer rounded pl-1 pr-1", { 'choosed': isSelected})}
             >
               {index + 1} : {item.content}
             </div>
