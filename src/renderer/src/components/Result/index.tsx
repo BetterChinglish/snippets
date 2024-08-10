@@ -9,7 +9,7 @@ export default function Result(): React.JSX.Element {
   return (
     <>
       <main className="bg-slate-50 pl-6 pr-6 overflow-ellipsis whitespace-nowrap">
-        {dataList.map((item, index) => {
+        {dataList.sort((a, b) => a.id - b.id).map((item, index) => {
           const isSelected = selectedIndex === index;
           return (<div key={item.id}>
             <div

@@ -3,7 +3,7 @@
 ## TODOS
 > 点击事件复制
 >
-> provider封装
+> provider封装----ok
 >
 > 复制之后关闭窗口ipc通信
 >
