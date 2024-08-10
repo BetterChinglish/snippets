@@ -1,8 +1,8 @@
 import React from 'react'
-import useSearch from '../../hooks/useSearch';
+import useSearch from '../../hooks/useSearch'
 
 export default function Search(): React.JSX.Element {
-  const {searchedValue, handleSearchedChange} = useSearch();
+  const { searchedValue, handleSearchedChange } = useSearch()
   return (
     <div className="bg-slate-50 p-5 drag">
       <section className="bg-slate-100 p-3">
@@ -14,9 +14,7 @@ export default function Search(): React.JSX.Element {
           placeholder="Search something..."
         />
       </section>
-      <section className="text-center text-slate-600 text-xs mt-2">
-        welcome to use my app
-      </section>
+      <section className="text-center text-slate-600 text-xs mt-2">welcome to use my app</section>
     </div>
   )
 }
