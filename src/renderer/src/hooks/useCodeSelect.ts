@@ -52,6 +52,7 @@ const useCodeSelect = () => {
     // 回车键，复制选中的内容
     const selectedContent = dataList[index].content;
     navigator.clipboard.writeText(selectedContent);
+    window.api.hideWindow();
   }
 
   // 绑定键盘事件
