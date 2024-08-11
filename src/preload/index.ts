@@ -5,10 +5,14 @@ const hideWindow = () => {
   ipcRenderer.send('hideWindow');
 }
 
+const registerShowWinShortcut = (whichWindow: string, shortcut: string) => {
+  ipcRenderer.send('registerShowWinShortcut', whichWindow, shortcut);
+}
+
 // Custom APIs for renderer
 const api = {
   hideWindow,
-
+  registerShowWinShortcut
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
