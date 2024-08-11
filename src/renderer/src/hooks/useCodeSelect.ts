@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect } from 'react';
 import { CodeContext, ContextProps } from '../context/CodeContext';
 
 const useCodeSelect = () => {
-  const { dataList } = useContext(CodeContext) as ContextProps
+  const { dataList, setSearchedValue, setDataList } = useContext(CodeContext) as ContextProps
 
   // 当用户修改搜索内容时，如果数据源发生变化，判定搜索出来的数据是否超过当前选择的index，如果没有超过则直接重新选中第一个
   useEffect(() => {
@@ -51,8 +51,13 @@ const useCodeSelect = () => {
   const copyContent = (index: number) => {
     // 回车键，复制选中的内容
     const selectedContent = dataList[index].content;
-    navigator.clipboard.writeText(selectedContent);
-    window.api.hideWindow();
+
+    navigator.clipboard.writeText(selectedContent).then(() => {
+      setSelectedIndex(0);
+      setSearchedValue('');
+      setDataList([]);
+      window.api.hideWindow();
+    })
   }
 
   // 绑定键盘事件
