@@ -1,33 +1,44 @@
 import { app, BrowserWindow, globalShortcut } from 'electron';
 
-export const registerShowWindowShortcut = (win: BrowserWindow): void => {
-  const toRegister = (shortcut: string, callback: () => void): void => {
-    const ret = globalShortcut.register(shortcut, callback);
-    if(!ret) {
-      console.log(`快捷键${shortcut}注册失败！`);
-    }
-    console.log(globalShortcut.isRegistered(shortcut));
-  }
+const hasRegistered = new Set<string>();
 
+const toRegister = (shortcut: string, callback: () => void): boolean => {
+  const ret = globalShortcut.register(shortcut, callback);
+  if(!ret) {
+    console.log(`快捷键${shortcut}注册失败！`);
+    return ret;
+  }
+  hasRegistered.add(shortcut);
+  console.log(shortcut, globalShortcut.isRegistered(shortcut));
+  return ret;
+}
+
+export const registerShowWindowShortcut = (win: BrowserWindow): void => {
   app.whenReady().then(() => {
-    toRegister('CommandOrControl+X', () => {
+    toRegister('CommandOrControl+Shift+;', () => {
       if(win.isVisible()) {
         return;
       }
       win.show()
     })
 
-    toRegister('F12', () => {
-      if(win.webContents.isDevToolsOpened()) {
+    toRegister('Esc', () => {
+      if(win.isFullScreen()) {
+        win.setFullScreen(false);
         return;
       }
-      win.webContents.openDevTools();
+      if(win.isVisible()) {
+        win.hide();
+        return;
+      }
     })
   })
 
   app.on('will-quit', () => {
-    globalShortcut.unregister('CommandOrControl+X');
-
+    [...hasRegistered].forEach((shortcut) => {
+      globalShortcut.unregister(shortcut);
+    })
+    hasRegistered.clear();
     globalShortcut.unregisterAll()
   })
 }
