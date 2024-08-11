@@ -48,16 +48,15 @@ const useCodeSelect = () => {
     }
   }, [dataList, selectedIndex])
 
-  const copyContent = (index: number) => {
+  const copyContent = async (index: number) => {
     // 回车键，复制选中的内容
     const selectedContent = dataList[index].content;
-
-    navigator.clipboard.writeText(selectedContent).then(() => {
-      setSelectedIndex(0);
-      setSearchedValue('');
-      setDataList([]);
-      window.api.hideWindow();
-    })
+    // 复制完成后初始化数据并关闭窗口
+    await navigator.clipboard.writeText(selectedContent)
+    setSelectedIndex(0);
+    setSearchedValue('');
+    setDataList([]);
+    window.api.hideWindow();
   }
 
   // 绑定键盘事件
