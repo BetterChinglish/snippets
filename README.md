@@ -35,13 +35,26 @@
 >
 > 复制后再隐藏窗口，避免异步引起问题：ok
 >
+> 使用redux修改项目
+>
 > 使用图标库，搜索框开头左侧加个设置按钮的图标
 >
 > 字体图标与文字对齐
 >
 > 点击设置图标事件，后续改为点击跳转配置窗口
 >
+> 使用组件库AntDesign,在vite中使用: npm i antd --save
 >
+> 注册快捷键失败使用antd组件alert
+>
+> search组件的input改为antd的input并添加autoFocus自动获取焦点
+>
+> 设置鼠标穿透
+> > mainWindow.setIgnoreMouseEvents(true, { forward: true })
+> >
+> > 当focus到我们要显示的元素上的时候,关闭穿透
+> >
+> > 否则开启穿透
 
 An Electron application with React and TypeScript
 
